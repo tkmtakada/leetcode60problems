@@ -15,16 +15,11 @@ class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if root is None:
             return False
-        
-        return self.dfs(root, targetSum)
-        
-    def dfs(self, root, targetSum):
-        if root is None:
-            if targetSum == 0:
-                return True
-            else: return False
+        if root.left is None and root.right is None:
+                return True if targetSum == root.val else False
 
-        return self.dfs(root.left, targetSum-root.val) or self.hasPathSum(root.right, targetSum-root.val)
+        return self.hasPathSum(root.left, targetSum-root.val) \
+                or self.hasPathSum(root.right, targetSum-root.val)
 
     
 # @lc code=end
