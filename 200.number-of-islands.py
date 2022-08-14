@@ -6,7 +6,30 @@
 
 # @lc code=start
 class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
+    def numIslands(self, grid: List[List[str]]) -> int:        
+
+        H, W = len(grid), len(grid[0])
+        n_island = 0
+        for i in range(H):
+            for j in range(W):
+                cur = grid[i][j]
+                if cur == "1":
+                    n_island += 1
+                    self.dfs(i, j, grid)
+
+                elif cur == "0":
+                    pass 
+                else:
+
+
+
+    def dfs(self, i, j , grid):
+        ...
+
+    def numIslands2(self, grid: List[List[str]]) -> int:    
+        """
+        2022/07/18
+        """
         # 方針
         self.H, self.W = len(grid), len(grid[0])
         counter = 0
@@ -17,7 +40,7 @@ class Solution:
                     counter += 1
         return counter
 
-    def dfs(self, grid, i, j):
+    def dfs2(self, grid, i, j):
         # --- 1を#に変える ---
         # 終了条件
         if i<0 or j <0 or i>=self.H or j>=self.W or grid[i][j] != "1":
