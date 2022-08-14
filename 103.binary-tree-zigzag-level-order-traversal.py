@@ -15,6 +15,31 @@ from collections import deque
 
 class Solution:
     def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if root is None: return []
+
+        q = [root]
+        ans = []
+        level = 0
+        while len(q) > 0:
+            lst = deque([])
+            # deque(lst)
+            for _ in range(len(q)):
+                node = q.pop(0)
+                print("node.val", node.val)
+                if level % 2 == 1:
+                    lst.appendleft(node.val)
+                else:
+                    lst.append(node.val)
+                
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            
+            level += 1    
+            ans.append(lst)
+        return ans
+    def zigzagLevelOrder2(self, root: Optional[TreeNode]) -> List[List[int]]:
         if root is None: return 
         
         ans = []
