@@ -14,8 +14,20 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         return self.dfs(root, 0)
+        # return self.dfs2(root, 0)
+
 
     def dfs(self, root, curDepth):
+        """
+        rootからのfarest depthを返す
+        """
+        if root is None:
+            return curDepth
+        
+        return max(self.dfs(root.left, curDepth+1), \
+                    self.dfs(root.right, curDepth+1))
+    
+    def dfs2(self, root, curDepth):
         if root is None:
             return curDepth
                 

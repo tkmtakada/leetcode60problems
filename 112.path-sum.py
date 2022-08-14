@@ -12,7 +12,25 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    """
+    注意：これ、left, rightどちらかが続く場合は
+    必ずそちらを選択して通らないと行けないことに注意
+    """
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        # judge
+        if root is None: return False
+        
+        if root.left is None and root.right is None:
+            if targetSum == root.val:
+                return True
+            else:
+                return False
+
+        return self.hasPathSum(root.left, targetSum-root.val) \
+            or self.hasPathSum(root.right, targetSum-root.val)
+
+    
+    def hasPathSum2(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if root is None:
             return False
         if root.left is None and root.right is None:
