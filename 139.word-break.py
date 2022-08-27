@@ -13,15 +13,17 @@ class Solution:
         方針：各単語が入りる場所にて、直前の一個がTrueだったら
         その言葉が入る場所の最後尾もTrueにする
         """        
-        dp = [False ] * len(s + 1)  # 先頭に一個必要
+        dp = [False ] * (len(s) + 1)  # 先頭に一個必要
         dp[0] = True
 
         for i in range(1, len(s)+1):
             # candの中にちょうどいいやつがいればTrue
             for word in wordDict:
                 len_word = len(word)
-
-                if (i - len_word) > 0 and dp[i - len_word] == True:
+                # print(s[i-len_word:i+1])
+                if (i - len_word) >= 0 \
+                and dp[i - len_word] == True \
+                and s[i-len_word:i] == word:
                     dp[i] = True
                 
         
