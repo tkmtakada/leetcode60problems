@@ -7,6 +7,27 @@
 # @lc code=start
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        """
+        2022/08/27
+
+        方針：各単語が入りる場所にて、直前の一個がTrueだったら
+        その言葉が入る場所の最後尾もTrueにする
+        """        
+        dp = [False ] * len(s + 1)  # 先頭に一個必要
+        dp[0] = True
+
+        for i in range(1, len(s)+1):
+            # candの中にちょうどいいやつがいればTrue
+            for word in wordDict:
+                len_word = len(word)
+
+                if (i - len_word) > 0 and dp[i - len_word] == True:
+                    dp[i] = True
+                
+        
+        return dp[-1]
+    
+    def wordBreak2 (self, s: str, wordDict: List[str]) -> bool:
         dp = [False for _ in range(len(s)+1)] 
         dp[0] = True
 
