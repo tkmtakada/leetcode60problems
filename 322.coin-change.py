@@ -7,6 +7,26 @@
 # @lc code=start
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
+        """
+        2022/08/27
+        """
+        dp = [float('inf') for _ in range(amount + 1)]
+        dp[0] = 0
+        for i in range(1, len(dp)):
+            min_num = float('inf')
+            for coin in coins:
+                if i - coin >= 0:
+                    min_num = min(min_num, dp[i - coin])
+                    # print("min_num: ", i, coin, min_num)
+            dp[i] = 1 + min_num
+        
+        # print(dp)
+        if dp[amount] == float('inf'):
+            return -1
+        else:
+            return dp[amount]
+
+    def coinChange2(self, coins: List[int], amount: int) -> int:
         dp = [float('inf') for _ in range(amount+1)]
         
         # 初期条件
