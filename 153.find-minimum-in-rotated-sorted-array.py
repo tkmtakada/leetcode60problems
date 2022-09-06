@@ -7,6 +7,25 @@
 # @lc code=start
 class Solution:
     def findMin(self, nums: List[int]) -> int:
+        """
+        2022/09/05
+        """
+        # まあ場合分けをしていく
+        # pivotが右半分と左半分、どちらにあるのかを考える
+        left, right = 0, len(nums) -1
+        if nums[left] < nums[right]: return nums[0]
+        
+        while left+1 < right:
+            mid = (left + right) // 2
+            if nums[left] > nums[mid]:                
+                right = mid
+            else:
+                left = mid
+            # print(nums[left:right+1])
+        return nums[right]
+        # return min(nums[left], nums[right])
+
+    def findMin2(self, nums: List[int]) -> int:
 
         s, e = 0, len(nums)-1
 
