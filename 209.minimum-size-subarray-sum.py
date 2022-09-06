@@ -7,7 +7,19 @@
 # @lc code=start
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        return 
+        window = []
+        total = 0
+        s = 0
+        minl = float('inf')
+        for i, num in enumerate(nums):
+            total += num
+            while total >= target:
+                minl = min(i-s+1, minl)
+                total -= nums[s]
+                s += 1
+
+        return 0 if minl == float('inf') else minl
+        
     def minSubArrayLen2(self, target: int, nums: List[int]) -> int:
         N = len(nums)
         total = 0
