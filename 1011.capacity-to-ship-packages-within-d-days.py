@@ -7,6 +7,29 @@
 # @lc code=start
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
+        # binary search
+        l = max(weights)
+        r = sum(weights)
+        def compute_days(cap):
+            total = 0
+            d = 1
+            for w in weights:                
+                if total + w > cap:
+                    total = w
+                    d += 1
+                else:
+                    total += w
+            return d
+        
+        while l < r:
+            m = (l + r ) // 2
+            if compute_days(m) <= days:
+                r = m
+            else:  # compute_days(m) > days
+                l = m+1
+        return l
+    
+    def shipWithinDays2(self, weights: List[int], days: int) -> int:
         # sumW = sum(weights)
         s = max(weights)
         e = sum(weights)

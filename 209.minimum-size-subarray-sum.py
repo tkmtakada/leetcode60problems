@@ -7,6 +7,8 @@
 # @lc code=start
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        return 
+    def minSubArrayLen2(self, target: int, nums: List[int]) -> int:
         N = len(nums)
         total = 0
         s = 0

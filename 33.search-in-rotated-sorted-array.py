@@ -7,6 +7,9 @@
 # @lc code=start
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
+        return 
+    
+    def search2(self, nums: List[int], target: int) -> int:
         if not nums: return -1
         if len(nums) == 1 and nums[0] == target: return 0
         if len(nums) == 1 and nums[0] != target: return -1
