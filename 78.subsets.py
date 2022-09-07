@@ -7,6 +7,20 @@
 # @lc code=start
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        # bit search
+        N = 2 ** len(nums)
+        for i in range(N):
+            lst = []
+            for k in range(len(nums)):
+                if (i & (1<<k))==1<<k:
+                    lst.append(k)
+            # print(lst)
+            ans.append([nums[idx] for idx in lst])    
+            
+        return ans
+    
+    def subsets2(self, nums: List[int]) -> List[List[int]]:
         ans = [[]]
         N = len(nums)
         for k in range(1, N+1):
