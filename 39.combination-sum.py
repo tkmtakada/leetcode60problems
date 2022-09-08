@@ -7,6 +7,20 @@
 # @lc code=start
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        ans = []        
+        def dfs(path, cur_sum, cands):
+            if cur_sum == target:
+                ans.append(path)
+                return
+            elif cur_sum > target:
+                return
+            elif cur_sum < target:
+                for i, cand in enumerate(cands):
+                    dfs(path+[cand], cur_sum+cand, cands[i:])
+        dfs([], 0, candidates)
+        return ans
+
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         # またできなかった... 
         ans = []
         path = []
