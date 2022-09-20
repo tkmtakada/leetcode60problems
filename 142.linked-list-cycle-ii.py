@@ -13,6 +13,17 @@
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        """
+        2022/09/21
+        """
+        slow = head
+        fast = head
+        while fast.next.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+        return 
+    def detectCycle2(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # まずは、cycle listかどうかの確認
         if not head or not head.next:
             return None

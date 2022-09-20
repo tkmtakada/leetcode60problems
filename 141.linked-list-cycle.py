@@ -13,6 +13,22 @@
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
+        """
+        2022/09/21
+        """
+        # edge case
+        if head is None: return False
+        
+        fast = head 
+        slow = head
+        while fast.next is not None and fast.next.next is not None:
+            fast = fast.next.next
+            slow = slow.next
+            if fast == slow:
+                return True
+
+        return False
+    def hasCycle2(self, head: Optional[ListNode]) -> bool:
         # 例外地処理
         if not head or not head.next or not head.next.next:
             return False
