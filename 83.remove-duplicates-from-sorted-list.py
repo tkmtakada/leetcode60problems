@@ -12,6 +12,8 @@
 #         self.next = next
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        return 
+    def deleteDuplicates2(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head: return None
 
         cur = head
