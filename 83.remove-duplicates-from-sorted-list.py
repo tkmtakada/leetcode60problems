@@ -12,7 +12,26 @@
 #         self.next = next
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        return 
+        if head is None or head.next is None:
+            return head
+        cur = head
+
+        while cur is not None and cur.next is not None:
+            prev = cur
+            cur = cur.next
+            # 進めた後で判定
+            if prev.val == cur.val:
+                # curを進める
+                dup_val = cur.val
+                while cur.next is not None and cur.next.val == dup_val:
+                    cur = cur.next
+                # While文を抜けた時は、cur.nextがNoneか、Cur.nextが異なる数字になった時。
+                cur = cur.next
+                prev.next = cur
+                # print("cur", cur)
+                # print("prev", prev)
+        return head
+
     def deleteDuplicates2(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head: return None
 
