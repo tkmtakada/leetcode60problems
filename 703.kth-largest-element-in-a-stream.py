@@ -9,6 +9,21 @@ import heapq
 class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):
+        self.k = k
+        heapq.heapify(nums)
+        self.nums = nums
+        while len(self.nums) > k:
+            heapq.heappop(self.nums)
+        
+
+    def add(self, val: int) -> int:
+        heapq.heappush(self.nums, val)
+        if len(self.nums) > self.k:
+            heapq.heappop(self.nums)
+        return self.nums[0]
+        
+    
+    def __init2__(self, k: int, nums: List[int]):
         # k = 1で、nusm が空リストのときがある
         self.k = k
         self.nums = nums
@@ -17,7 +32,7 @@ class KthLargest:
         while len(self.nums) >= self.k+1:
             heapq.heappop(self.nums)
 
-    def add(self, val: int) -> int:
+    def add2(self, val: int) -> int:
         heapq.heappush(self.nums, val)
         if len(self.nums) >= self.k+1:
             heapq.heappop(self.nums)
