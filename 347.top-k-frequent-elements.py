@@ -8,6 +8,9 @@
 import heapq
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        """
+        ロジックはあっている気しかしない
+        """
         mp = {}
         for num in nums:
             if num in mp:
@@ -21,8 +24,9 @@ class Solution:
         for k, v in mp.items():
             heapq.heappush(queue, (v, k))
             print("length of queue", len(queue))
-            while len(queue) > k-1:
+            if len(queue) > k:
                 heapq.heappop(queue)
+                print("popped")
             print("queue", queue)
         return [elt[1] for elt in queue]
 

@@ -10,6 +10,26 @@ class Solution:
     def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
         queue = []
         heapq.heapify(queue)
+        visited = set([])
+        i, j = 0, 0
+        heapq.heappush(queue, (nums1[i]+nums2[j], i, j))
+        ans = []        
+        while len(queue) > 0 and len(ans) < k:
+            # print(queue)
+            _, i, j = heapq.heappop(queue)
+            ans.append([nums1[i], nums2[j]])
+            if i+1 < len(nums1) and (i+1, j) not in visited:
+                heapq.heappush(queue, (nums1[i+1] + nums2[j], i+1, j))
+                visited.add((i+1, j))
+
+            if j+1 < len(nums2) and (i, j+1) not in visited:
+                heapq.heappush(queue, (nums1[i]+nums2[j+1], i, j+1))
+                visited.add((i, j+1))
+            
+        return ans
+    def kSmallestPairs2(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+        queue = []
+        heapq.heapify(queue)
 
         # visited = [[0 for _ in range(len(nums2))] for _ in range(len(nums1))]
 
