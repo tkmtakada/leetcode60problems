@@ -9,6 +9,24 @@
 from collections import deque
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
+        # これたしか方法が2つある、cumsum、ひとつだけか。
+        # sliding wndows多分だめ、マイナス値があるから。        
+        ans = 0
+        cur = 0        
+        mp = {0:1}
+        for num in nums:
+            cur += num            
+            if (cur-k) in mp:
+                ans += mp[cur-k]
+            # -- update map --
+            if cur in mp:
+                mp[cur] += 1
+            else:
+                mp[cur] = 1
+        return ans    
+
+
+    def subarraySum2(self, nums: List[int], k: int) -> int:
         """
         2022/08/11
         """
