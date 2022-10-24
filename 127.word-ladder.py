@@ -6,7 +6,37 @@
 
 # @lc code=start
 class Solution:
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:        
+        used = set([])
+        def getNextCands(node):
+            cands = []
+            for word in wordList:
+                if word in used:
+                    continue
+                cnt = 0
+                for c, d in zip(node, word):
+                    if c != d:
+                        cnt += 1
+                    if cnt >= 2:
+                        break
+                if cnt == 1:
+                    cands.append(word)
+            return cands
+
+        q = [beginWord]
+        depth = 0        
+        while len(q) > 0:
+            depth += 1
+            for _ in range(len(q)):
+                node = q.pop(0)
+                if node == endWord:
+                    return depth
+                next_nodes = getNextCands(node)                
+                used |= set(next_nodes)
+                q.extend(next_nodes)
+        return 0
+    
+    def ladderLength2(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         # shorteestなのでbfsを使う
         wordList = set(wordList)
         queue = [beginWord]
