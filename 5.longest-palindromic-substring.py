@@ -7,7 +7,7 @@
 # @lc code=start
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        # dp!
+        # dp!        
         n = len(s)
         dp = [[True if i>=j else False for j in range(n)] for i in range(n)]
         ans_idx = [0,1]
