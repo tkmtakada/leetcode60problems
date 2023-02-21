@@ -14,7 +14,8 @@ class Solution:
                 return [mp[m], i]
             else:
                 mp[elt] = i
+        
 
-        # return None 
+        return None 
 # @lc code=end
 
